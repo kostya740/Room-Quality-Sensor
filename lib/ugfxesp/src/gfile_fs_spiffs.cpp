@@ -103,6 +103,7 @@ static int USERRead(GFILE *f, void *buf, int size) {
 
 static bool_t USERSetpos(GFILE *f, long int pos) {
 	f->pos = pos;
+	return true;
 }
 
 static long int USERGetsize(GFILE *f) {
@@ -114,7 +115,7 @@ static long int USERGetsize(GFILE *f) {
 static bool_t USEREof(GFILE *f) {
 	if (!reader.open (f))
 		return true;
-	return f->pos >= reader.sf->size ();
+	return f->pos >= (long)reader.sf->size ();
 }
 
 extern "C" GFILEVMT FsUSERVMT = {

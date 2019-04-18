@@ -80,7 +80,7 @@ static bool_t USERExists(const char *fname) {
 	return SPIFFS.exists (fname);
 }
 
-static int32_t	USERFilesize(const char *fname) {
+static long int	USERFilesize(const char *fname) {
 	return SPIFFS.open (fname,"r").size ();
 }
 
@@ -101,11 +101,11 @@ static int USERRead(GFILE *f, void *buf, int size) {
 	return reader.read (f,buf,size);
 }
 
-static bool_t USERSetpos(GFILE *f, int32_t pos) {
+static bool_t USERSetpos(GFILE *f, long int pos) {
 	f->pos = pos;
 }
 
-static int32_t USERGetsize(GFILE *f) {
+static long int USERGetsize(GFILE *f) {
 	if (!reader.open (f))
 		return 0;
 	return reader.sf->size ();
